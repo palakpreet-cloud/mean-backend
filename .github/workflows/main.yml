@@ -12,7 +12,7 @@ jobs:
       - name: get code from git
         uses: actions/checkout@v4
       - name: connect
-        uses: appleboy/ssh-action@v1.2.0
+        uses: appleboy/ssh-action@v1
 
         with:
           host: ${{secrets.IP}}
