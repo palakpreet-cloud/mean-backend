@@ -1,0 +1,26 @@
+name: meanbackend
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  backendd:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get code from git
+        uses: actions/checkout@v4
+      - name: connect
+        uses: appleboy/ssh-action@v1.2.0
+
+        with:
+          host: ${{secrets.IP}}
+          username: ${{secrets.USERNAME}}
+          key: ${{secrets.MEAN}}
+
+          script: |
+            cd /home/ubuntu/mean-backend
+            docker build -t backend .
+            docker run -d -p 3004:3004 backend
+          
